@@ -81,6 +81,7 @@ export default function Contact() {
          document.getElementById("form").submit();
         }}
       </script>
+      <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     </div>
  //   </Layout>
   )
