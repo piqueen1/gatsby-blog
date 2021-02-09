@@ -37,7 +37,8 @@ export default function Contact() {
       <form
         name="contact"
         method="post"
-        action="/thanks/"
+        action="/thanks"
+        data-netlify-recaptcha="true"
         data-netlify="true"
         data-netlify-honeypot="bot-field"
         onSubmit={handleSubmit}
@@ -71,6 +72,7 @@ export default function Contact() {
           </label>
         </p>
         <p>
+          <div data-netlify-recaptcha="true"></div>
           <button type="submit">Send</button>
         </p>
       </form>
