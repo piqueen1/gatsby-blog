@@ -1,6 +1,17 @@
 import React from 'react'
-import { navigate } from 'gatsby-link'
-//import Layout from '../components/layout'
+import { navigate } from 'gatsby'
+import Recaptcha from 'react-google-recaptcha'
+//import Layout from '../layout'
+
+const RECAPTCHA_KEY = process.env.GATSBY_APP_SITE_RECAPTCHA_KEY
+if (typeof RECAPTCHA_KEY === 'undefined') {
+  throw new Error(`
+  Env var GATSBY_APP_SITE_RECAPTCHA_KEY is undefined! 
+  You probably forget to set it in your Netlify build environment variables. 
+  Make sure to get a Recaptcha key at https://www.netlify.com/docs/form-handling/#custom-recaptcha-2-with-your-own-settings
+  Note this demo is specifically for Recaptcha v2
+  `)
+}
 
 function encode(data) {
   return Object.keys(data)
@@ -10,6 +21,7 @@ function encode(data) {
 
 export default function Contact() {
   const [state, setState] = React.useState({})
+  const recaptchaRef = React.createRef()
 
   const handleChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value })
@@ -18,11 +30,13 @@ export default function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault()
     const form = e.target
+    const recaptchaValue = recaptchaRef.current.getValue()
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: encode({
         'form-name': form.getAttribute('name'),
+        'g-recaptcha-response': recaptchaValue,
         ...state,
       }),
     })
@@ -31,26 +45,19 @@ export default function Contact() {
   }
 
   return (
-  //  <Layout>
-    <div>
-      <h1>Contact</h1>
+    // <Layout>
+      <h1>reCAPTCHA 2</h1>
       <form
-        id="form"
-        name="contact"
+        name="contact-recaptcha"
         method="post"
-        action="/thanks"
-        //data-netlify-recaptcha="true"
+        action="/thanks/"
         data-netlify="true"
-        data-netlify-honeypot="bot-field"
+        data-netlify-recaptcha="true"
         onSubmit={handleSubmit}
       >
-        {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
-        <input type="hidden" name="form-name" value="contact" />
-        <p hidden>
-          <label>
-            Don’t fill this out: <input name="bot-field" onChange={handleChange} />
-          </label>
-        </p>
+        <noscript>
+          <p>This form won’t work with Javascript disabled</p>
+        </noscript>
         <p>
           <label>
             Your name:
@@ -72,17 +79,11 @@ export default function Contact() {
             <textarea name="message" onChange={handleChange} />
           </label>
         </p>
+        <Recaptcha ref={recaptchaRef} sitekey={RECAPTCHA_KEY} />
         <p>
-            <button type="submit" class="g-recaptcha" data-sitekey="6LedP1AaAAAAALpGop-3R2KlfgwL69ypbTSugoES" data-callback="onSubmit">Send</button>
+          <button type="submit">Send</button>
         </p>
       </form>
-      <script>
-        {function onSubmit(token) {
-         document.getElementById("form").submit();
-        }}
-      </script>
-      <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    </div>
- //   </Layout>
+    {/* </Layout> */}
   )
 }
