@@ -1,10 +1,12 @@
 import React from 'react'
-import Layout from '../components/layout'
+//import Layout from '../components/layout'
 
 const ContactFormPage = () => (
-    <Layout>
+  //  <Layout>
+      <div>
         <h1>Contact</h1>
-    </Layout>
+      </div>
+  //  </Layout>
 )
 
 export default ContactFormPage;
