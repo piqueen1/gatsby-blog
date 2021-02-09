@@ -76,11 +76,11 @@ export default function Contact() {
           <button type="submit" class="g-recaptcha" data-sitekey="6LedP1AaAAAAALpGop-3R2KlfgwL69ypbTSugoES" data-callback={handleSubmit}>Send</button>
         </p>
       </form>
-      <script>
+      {/* <script>
         {function onSubmit(token) {
          document.getElementById("form").submit();
         }}
-      </script>
+      </script> */}
       <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     </div>
  //   </Layout>
