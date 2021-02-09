@@ -39,7 +39,7 @@ export default function Contact() {
         name="contact"
         method="post"
         action="/thanks"
-        data-netlify-recaptcha="true"
+        //data-netlify-recaptcha="true"
         data-netlify="true"
         data-netlify-honeypot="bot-field"
         onSubmit={handleSubmit}
@@ -73,7 +73,7 @@ export default function Contact() {
           </label>
         </p>
         <p>
-          <button type="submit" class="g-recaptcha" data-sitekey="6LedP1AaAAAAALpGop-3R2KlfgwL69ypbTSugoES" data-callback={handleSubmit}>Send</button>
+            <button type="submit" /*class="g-recaptcha" data-sitekey="6LedP1AaAAAAALpGop-3R2KlfgwL69ypbTSugoES" data-callback={handleSubmit}*/>Send</button>
         </p>
       </form>
       {/* <script>
@@ -81,7 +81,7 @@ export default function Contact() {
          document.getElementById("form").submit();
         }}
       </script> */}
-      <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+      {/* <script src="https://www.google.com/recaptcha/api.js" async defer></script> */}
     </div>
  //   </Layout>
   )
