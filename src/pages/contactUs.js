@@ -35,6 +35,7 @@ export default function Contact() {
     <div>
       <h1>Contact</h1>
       <form
+        id="form"
         name="contact"
         method="post"
         action="/thanks"
@@ -72,10 +73,14 @@ export default function Contact() {
           </label>
         </p>
         <p>
-          <div data-netlify-recaptcha="true"></div>
-          <button type="submit">Send</button>
+          <button type="submit" class="g-recaptcha" data-sitekey="your_site_key" data-callback='onSubmit'>Send</button>
         </p>
       </form>
+      <script>
+        {function onSubmit(token) {
+         document.getElementById("form").submit();
+        }}
+      </script>
     </div>
  //   </Layout>
   )
