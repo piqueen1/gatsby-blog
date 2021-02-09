@@ -46,6 +46,7 @@ export default function Contact() {
 
   return (
     // <Layout>
+    <div>
       <h1>reCAPTCHA 2</h1>
       <form
         name="contact-recaptcha"
@@ -84,6 +85,7 @@ export default function Contact() {
           <button type="submit">Send</button>
         </p>
       </form>
+    </div>
     {/* </Layout> */}
   )
 }
