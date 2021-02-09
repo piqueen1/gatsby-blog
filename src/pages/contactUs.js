@@ -73,7 +73,7 @@ export default function Contact() {
           </label>
         </p>
         <p>
-          <button type="submit" class="g-recaptcha" data-sitekey="your_site_key" data-callback='onSubmit'>Send</button>
+          <button type="submit" class="g-recaptcha" data-sitekey="6LedP1AaAAAAALpGop-3R2KlfgwL69ypbTSugoES" data-callback='onSubmit'>Send</button>
         </p>
       </form>
       <script>
